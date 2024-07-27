@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { MdAlternateEmail, IoMdCall, CiLocationOn } from 'react-icons/all';
 
-const ContactFarm = () => {
+const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
 
@@ -17,10 +18,10 @@ const ContactFarm = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('/send-email', formData);
+      const res = await axios.post('/api/contact/route', formData);
       console.log(res.data);
       alert('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message. Please try again.');
@@ -79,4 +80,4 @@ const ContactFarm = () => {
   );
 };
 
-export default ContactFarm;
+export default ContactForm;
